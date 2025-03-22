@@ -1,0 +1,62 @@
+{
+  "cities": [
+    {
+      "name": "Ambon Indonesia",
+      "lat": 3.6959434,
+      "latdir": "S",
+      "long": 128.178785,
+      "longdir": "E"
+    },
+    {
+      "name": "London",
+      "lat": 51.4893335,
+      "latdir": "N",
+      "long": 0.14405508452768728,
+      "longdir": "W"
+    },
+    {
+      "name": "Mekkah",
+      "lat": 21.6698063,
+      "latdir": "N",
+      "long": 41.4996029,
+      "longdir": "E"
+    },
+    {
+      "name": "Medan Indonesia",
+      "lat": 3.5896654,
+      "latdir": "N",
+      "long": 98.6738261,
+      "longdir": "E"
+    },
+    {
+      "name": "Pontianak",
+      "lat": 0.0226903,
+      "latdir": "S",
+      "long": 109.3447488,
+      "longdir": "E"
+    },
+    {
+      "name": "Yogyakarta",
+      "lat": 7.8011998,
+      "latdir": "S",
+      "long": 110.3646608,
+      "longdir": "E"
+    },
+    {
+      "name": "Sabang Indonesia",
+      "lat": 5.8927453,
+      "latdir": "N",
+      "long": 95.3225751,
+      "longdir": "E"
+    },
+    {
+      "name": "Merauke Indonesia",
+      "lat": 7.7925193,
+      "latdir": "S",
+      "long": 140.01832515,
+      "longdir": "E"
+    }
+  ],
+  "not_found": []
+}
+

@@ -1,0 +1,64 @@
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+    
+  build:
+    cmds:
+      - odin build . -out:seismo.exe -o:speed
+    silent: false
+    method: none
+    aliases:
+      - b
+    generates:
+      - seismo.exe
+
+  run:
+    deps:
+      - build
+    silent: false
+    method: none
+    aliases:
+      - r
+    cmds:
+      - ./seismo.exe
+
+  make_test_data:
+    cmds:
+      - py -3.10 ./geocoord.py "Ambon Indonesia" Mekkah "Sabang Indonesia" "Merauke Indonesia" Yogyakarta Pontianak London Vatikan "Los Angles" --output=./test_data/cities.json
+    silent: false
+    method: none
+    aliases:
+      - mt
+    generates:
+      - test_data/cities.json
+
+  build_test_parsing:
+    deps:
+      - build
+    silent: false
+    method: none
+    aliases:
+      - bprs
+    cmds:
+      - odin build ./examples/parsing_json -out:./examples/parsing_json/parsing.exe
+    generates:
+      - examples/parsing_json/parsing.exe
+
+  test_parsing:
+    deps:
+      - build_test_parsing
+      # - make_test_data
+    silent: true
+    method: none
+    aliases:
+      - tprs
+    cmds:
+      - examples\\parsing_json\\parsing.exe test_data\\cities.json
+
