@@ -115,35 +115,41 @@ parse_json :: proc(filename: string) -> (cities: map[string]Coord_DMS, parse_err
 
         city_json := cities_json[idx].(json.Object)
 
-        city : Coord_DMS
-        city.name = city_json["name"].(json.String)
-
-        latdir := city_json["latdir"].(json.String)
-        longdir := city_json["longdir"].(json.String)
-
-        if latdir == "N" {
-            city.latdir = .N
-        } else if latdir == "S" {
-            city.latdir = .S
-        } else {
-            city.latdir = .E
-        }
-
-        if longdir == "E" {
-            city.longdir = .E
-        } else if longdir == "W" {
-            city.longdir = .W
-        } else {
-            city.longdir = .P
-        }
-
-        city.lat = decimal_to_dms(city_json["lat"].(json.Float))
-        city.long = decimal_to_dms(city_json["long"].(json.Float))
+        city := parse_city(city_json)
 
         cities[city.name] = city
-        
+
     }
 
     return cities, nil
 
+}
+
+parse_city :: proc(city_json: json.Object) -> (city: Coord_DMS) {
+
+    city.name = city_json["name"].(json.String)
+
+    latdir := city_json["latdir"].(json.String)
+    longdir := city_json["longdir"].(json.String)
+
+    if latdir == "N" {
+        city.latdir = .N
+    } else if latdir == "S" {
+        city.latdir = .S
+    } else {
+        city.latdir = .E
+    }
+
+    if longdir == "E" {
+        city.longdir = .E
+    } else if longdir == "W" {
+        city.longdir = .W
+    } else {
+        city.longdir = .P
+    }
+
+    city.lat = decimal_to_dms(city_json["lat"].(json.Float))
+    city.long = decimal_to_dms(city_json["long"].(json.Float))
+
+    return city
 }
