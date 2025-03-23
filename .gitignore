@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# test_data from IRIS
+./test_data/2021-08-14-mww72-haiti-region-35
+./test_data/2025-03-32-mb42-mindanao-phillippines
+
 # C extensions
 *.so
 
