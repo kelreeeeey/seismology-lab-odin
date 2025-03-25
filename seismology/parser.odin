@@ -79,11 +79,11 @@ import "core:encoding/json"
 ParseError :: union {
     os.Error,
     json.Error,
-    ReadFileError,
+    ReadJSONFileError,
 }
 
-ReadFileError :: struct {
-    massage: string
+ReadJSONFileError :: struct {
+    file_name, massage: string
 }
 
 parse_json :: proc(filename: string) -> (cities: map[string]Coord_DMS, parse_err: ParseError) {
@@ -91,7 +91,7 @@ parse_json :: proc(filename: string) -> (cities: map[string]Coord_DMS, parse_err
     data, ok := os.read_entire_file_from_filename(filename)
     if !ok {
         fmt.eprintln("Failed to load the file!")
-        return nil, ReadFileError{massage="Reading file error"}
+        return nil, ReadJSONFileError{file_name=filename,massage="Reading file error"}
     }
     defer delete(data) // Free the memory at the end
 
